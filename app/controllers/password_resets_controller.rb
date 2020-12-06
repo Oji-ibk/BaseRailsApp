@@ -51,6 +51,7 @@ class PasswordResetsController < ApplicationController
     def valid_user
       unless (@user && @user.activated? &&
               @user.authenticated?(:reset, params[:id]))
+        flash[:danger] = "Not valid user."      #original flash for Heroku debug　
         redirect_to root_url
       end
     end
